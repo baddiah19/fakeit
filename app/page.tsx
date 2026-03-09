@@ -4,29 +4,32 @@ import Link from "next/link";
 const cards = [
   {
     id: "cafe",
-    title: "Street Cafe",
+    title: "HR Experience",
     description:
-      "Experience real-time smart ordering personalized customer flows.",
-    href: "/cafe",
-    image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80",
+      "Step into a smart HR office and explore how AI transforms hiring, onboarding, and employee support.",
+    href: "/hr",
+    image: "/images/office-panorama.png",
     active: true,
   },
   {
     id: "classroom",
     title: "Classroom",
     description:
-      "Experience real-time smart ordering personalized customer flows.",
+      "Explore AI in education: smart classrooms, personalized learning, and real-time engagement.",
+    href: "/classroom",
     image:
       "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80",
+    active: true,
   },
   {
     id: "construction",
     title: "Construction Site",
     description:
-      "Experience real-time smart ordering personalized customer flows.",
+      "Discover AI on site: safety monitoring, progress tracking, and resource optimization.",
+    href: "/construction",
     image:
       "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80",
+    active: true,
   },
 ];
 

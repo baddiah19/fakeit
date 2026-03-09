@@ -1,56 +1,83 @@
+/** Convert normalized image coords [0,1] to panorama yaw (degrees). */
+export function xToYaw(x: number): number {
+  return (x - 0.5) * 360;
+}
+/** Convert normalized image coords [0,1] to panorama pitch (degrees). */
+export function yToPitch(y: number): number {
+  return (0.5 - y) * 180;
+}
+
+/** Get pitch/yaw in degrees for a hotspot (uses explicit values or derives from x,y). */
+export function getHotspotPitchYaw(h: Hotspot): { pitch: number; yaw: number } {
+  return {
+    pitch: h.pitch ?? yToPitch(h.y),
+    yaw: h.yaw ?? xToYaw(h.x),
+  };
+}
+
 export type Hotspot = {
   id: string;
   title: string;
   description: string;
   x: number;
   y: number;
+  /** Spherical: vertical angle in degrees (for 360 viewer). Derived from y if omitted. */
+  pitch?: number;
+  /** Spherical: horizontal angle in degrees (for 360 viewer). Derived from x if omitted. */
+  yaw?: number;
   media?: string;
 };
 
 export const hotspots: Hotspot[] = [
   {
-    id: "ai-camera",
-    title: "AI Predicting Foot Traffic",
+    id: "resume-ai",
+    title: "Resume AI",
     description:
-      "Computer vision forecasts peak times, optimizing staffing and queue flow.",
-    x: 0.12,
-    y: 0.32,
+      "Resume AI",
+    x: 0.05,
+    y: 0.65,
     media: "https://www.youtube.com/watch?v=ysz5S6PUM-U",
   },
   {
-    id: "smart-audio",
-    title: "Sound Levels Insight",
+    id: "interview-ai",
+    title: "Interview AI",
     description:
-      "Ambient audio analytics keep the cafe comfortable and reduce noise spikes.",
-    x: 0.44,
-    y: 0.36,
+      "Interview AI",
+    x: 0.24,
+    y: 0.6,
     media: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
   },
   {
-    id: "predictive-pos",
-    title: "Predictive Ordering",
+    id: "analytics-ai",
+    title: "Analytics AI",
     description:
-      "The POS recommends add-ons and bundles based on real-time demand.",
-    x: 0.51,
-    y: 0.46,
+      "Analytics AI",
+    x: 0.505,
+    y: 0.59,
     media: "https://www.youtube.com/watch?v=ysz5S6PUM-U",
   },
   {
-    id: "qr-ordering",
-    title: "Smart QR Ordering",
+    id: "helpdesk-ai",
+    title: "Helpdesk AI",
     description:
-      "Personalized QR menus speed ordering and adapt to inventory changes.",
-    x: 0.76,
-    y: 0.54,
+      "Helpdesk AI",
+    x: 0.75,
+    y: 0.58,
     media: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
   },
   {
-    id: "menu-optimization",
-    title: "Menu Board Optimization",
+    id: "onboarding-ai",
+    title: "Onboarding AI",
     description:
-      "AI adjusts featured items to maximize margin and customer satisfaction.",
-    x: 0.65,
-    y: 0.18,
+      "Onboarding AI",
+    x: 0.87,
+    y: 0.63,
     media: "https://www.youtube.com/watch?v=ysz5S6PUM-U",
   },
 ];
+
+/** Hotspots for classroom 360 scene (add entries when you have a classroom panorama). */
+export const classroomHotspots: Hotspot[] = [];
+
+/** Hotspots for construction 360 scene (add entries when you have a construction panorama). */
+export const constructionHotspots: Hotspot[] = [];

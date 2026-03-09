@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fake-360 Interactive AI Demo",
-  description: "Immersive demo experience for AI product showcases.",
+  title: "AI Demo Portal",
+  description: "Explore AI in action: HR, classroom, and construction demos with interactive 360° scenes.",
 };
 
 export default function RootLayout({

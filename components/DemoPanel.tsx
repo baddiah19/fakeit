@@ -4,11 +4,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import ReactPlayer from "react-player";
 import NavigationArrows from "./NavigationArrows";
-import { hotspots } from "@/data/hotspots";
+import { hotspots as defaultHotspots } from "@/data/hotspots";
+import type { Hotspot } from "@/data/hotspots";
 import { useSceneStore } from "@/store/useSceneStore";
 
 type DemoPanelProps = {
   onNavigate: (direction: "prev" | "next") => void;
+  /** Hotspots for the current scene. Default: HR office hotspots. */
+  hotspots?: Hotspot[];
 };
 
 const useMediaQuery = (query: string) => {
@@ -28,7 +31,10 @@ const useMediaQuery = (query: string) => {
   return matches;
 };
 
-export default function DemoPanel({ onNavigate }: DemoPanelProps) {
+export default function DemoPanel({
+  onNavigate,
+  hotspots = defaultHotspots,
+}: DemoPanelProps) {
   const panelOpen = useSceneStore((state) => state.panelOpen);
   const activeHotspotId = useSceneStore((state) => state.activeHotspotId);
   const closePanel = useSceneStore((state) => state.closePanel);
@@ -36,7 +42,7 @@ export default function DemoPanel({ onNavigate }: DemoPanelProps) {
 
   const activeHotspot = useMemo(
     () => hotspots.find((spot) => spot.id === activeHotspotId) ?? null,
-    [activeHotspotId]
+    [activeHotspotId, hotspots]
   );
 
   const slideFrom = isMobile

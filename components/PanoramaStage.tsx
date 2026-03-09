@@ -40,7 +40,7 @@ export default function PanoramaStage({
   return (
     <div className="absolute inset-0">
       <Image
-        src="/images/cafe-panorama.jpg"
+        src="/images/office-panorama.png"
         alt="Panoramic cafe scene"
         width={4000}
         height={2000}
