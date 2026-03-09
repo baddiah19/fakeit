@@ -38,16 +38,19 @@ export default function SceneViewport({
   }, [hotspots.length, closePanel]);
 
   const handleNavigate = (direction: "prev" | "next") => {
-    if (!hotspots.length) {
-      return;
-    }
+    if (!hotspots.length) return;
     const currentIndex = hotspots.findIndex(
       (spot) => spot.id === activeHotspotId
     );
+    const length = hotspots.length;
     const nextIndex =
-      direction === "next"
-        ? (currentIndex + 1 + hotspots.length) % hotspots.length
-        : (currentIndex - 1 + hotspots.length) % hotspots.length;
+      currentIndex === -1
+        ? direction === "next"
+          ? 0
+          : length - 1
+        : direction === "next"
+          ? (currentIndex + 1) % length
+          : (currentIndex - 1 + length) % length;
     const nextSpot = hotspots[nextIndex];
     setActiveHotspot(nextSpot.id);
     openPanel();

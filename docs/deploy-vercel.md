@@ -27,18 +27,30 @@
    - Importa el repositorio (conectar con GitHub/GitLab si hace falta).
 
 3. **Configuración del proyecto**  
-   Vercel detecta Next.js automáticamente. Revisa:
+   Con `vercel.json` en el repo ya queda definido **Next.js** y **Install Command** (`npm install --legacy-peer-deps`). Revisá en el dashboard:
    - **Framework Preset:** Next.js  
-   - **Root Directory:** `./` (o la carpeta del monorepo si aplica)  
-   - **Build Command:** `npm run build` (por defecto)  
-   - **Output Directory:** lo que Next use por defecto (no hace falta tocar)  
-   - **Install Command:** `npm install`
+   - **Root Directory:** `./`  
+   - **Build Command:** `npm run build`  
+   - **Install Command:** debe ser `npm install --legacy-peer-deps` (o lo que tenga `vercel.json`)
 
 4. **Variables de entorno**  
    Si en el futuro usas variables (API keys, etc.), añádelas en **Settings → Environment Variables**. Para este proyecto no son necesarias de inicio.
 
 5. **Deploy**  
-   Click en **Deploy**. Cada push a la rama principal (p. ej. `main`) generará un nuevo deploy.
+   Click en **Deploy**.
+
+---
+
+## ¿Solo con push se actualiza el deploy?
+
+**Sí**, siempre que el proyecto esté conectado a un repo (GitHub, GitLab o Bitbucket):
+
+1. Conectá el repo en Vercel: **Project** → **Settings** → **Git** → conectar el repo si no lo está.
+2. Cada **push a la rama de producción** (por defecto `main` o `master`) dispara un **nuevo deploy automático**.
+3. Para comprobarlo: hacé un cambio, `git push`, entrá a **vercel.com** → tu proyecto → pestaña **Deployments**. Ahí debería aparecer un deploy nuevo “Building” y luego “Ready”.
+4. La URL de producción (p. ej. `https://ai-demo-portal.vercel.app`) se actualiza con ese deploy; no hace falta hacer nada más.
+
+Si **no** tenés Git conectado, cada actualización hay que subirla con la CLI: `vercel --prod` desde la raíz del proyecto.
 
 ---
 
